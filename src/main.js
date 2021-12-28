@@ -2,6 +2,14 @@ import { createApp } from 'vue';
 import App from './App.vue';
 
 import router from './router.js';
+
+import BaseAlert from './Components/UI/BaseAlert.vue';
+import BaseButton from './Components/UI/BaseButton.vue';
+import BaseCard from './Components/UI/BaseCard.vue';
+import BasePopout from './Components/UI/BasePopout.vue';
+import BaseDialog from './Components/UI/BaseDialog.vue';
+import BaseTable from './Components/UI/BaseTable.vue';
+
 // import store from './store/index.js';
 
 const app = createApp(App);
@@ -9,4 +17,12 @@ const app = createApp(App);
 app.use(router);
 // app.use(store);
 
-app.mount('#app')
+app.component('base-card', BaseCard);
+app.component('base-button', BaseButton);
+app.component('base-popout', BasePopout);
+app.component('base-alert', BaseAlert);
+app.component('base-table', BaseTable);
+app.component('base-dialog', BaseDialog);
+
+app.mount('#app');
+
