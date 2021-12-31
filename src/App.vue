@@ -1,15 +1,16 @@
-
 <template>
+  <the-header></the-header>
   <router-view>
   </router-view>
 </template>
 
 
 <script>
+import TheHeader from './Components/Layout/TheHeader.vue'
 export default {
   name: 'App',
   components: {
-   
+    TheHeader
   }
 }
 </script>
@@ -23,7 +24,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  /* margin-top: 60px; */
 }
 
 
