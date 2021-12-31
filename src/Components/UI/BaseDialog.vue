@@ -1,9 +1,9 @@
 //base dialog is used as a wrapper, you can pass props into this component to set title and main body content 
-
 <template>
   <teleport to="body">
     <div v-if="show" @click="tryClose" class="backdrop"></div>
     <transition name="dialog">
+  
       <dialog open v-if="show">
         <header>
           <slot name="header">
@@ -19,6 +19,7 @@
           </slot>
         </menu>
       </dialog>
+
     </transition>
   </teleport>
 </template>
