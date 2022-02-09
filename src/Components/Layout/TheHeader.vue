@@ -2,14 +2,14 @@
   <header>
     <nav>
       <h1>
-        <router-link to="/">DragoNet</router-link>
+        <router-link to="/">DragoNET</router-link>
       </h1>
       <ul>
         <li>
           <router-link to="/UserEvents">My Events</router-link>
         </li>
         <li>
-          <router-link to="/PersonnelOverview">Personnel Overview</router-link>
+          <router-link to="/AllUsers">Personnel Overview</router-link>
         </li>
         <li>
           <router-link to="/AllEvents">Event Overview</router-link>

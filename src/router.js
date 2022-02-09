@@ -14,7 +14,7 @@ const router = createRouter({
         {path: '/', redirect: '/mainpage' },
         {path: '/Mainpage', component: MainPage },
         {path: '/AllEvents', component: AllEvents },
-        {path: '/PersonnelOverview', component: AllUsers },
+        {path: '/AllUsers', component: AllUsers },
         {path: '/UserEvents', component: UserEvents },
         {path: '/UserProfile', component: UserProfile },
         { path: '/:notFound(.*)', component: NotFound }
