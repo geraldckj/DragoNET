@@ -6,16 +6,16 @@
       </h1>
       <ul>
         <li>
-          <router-link to="/coaches">My Events</router-link>
+          <router-link to="/UserEvents">My Events</router-link>
         </li>
         <li>
-          <router-link to="/coaches">Personnel Overview</router-link>
+          <router-link to="/PersonnelOverview">Personnel Overview</router-link>
         </li>
         <li>
-          <router-link to="/coaches">Event Overview</router-link>
+          <router-link to="/AllEvents">Event Overview</router-link>
         </li>
         <li>
-          <router-link to="/coaches">My Profile</router-link>
+          <router-link to="/UserProfile">My Profile</router-link>
         </li>
         <!-- <li v-if="isLoggedIn">
           <router-link to="/requests">Personnel Overview</router-link>
