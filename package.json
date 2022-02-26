@@ -9,8 +9,9 @@
   },
   "dependencies": {
     "axios": "^0.25.0",
+    "bootstrap": "^4.6.1",
     "core-js": "^3.6.5",
-    "vue": "^3.2.26",
+    "uninstall": "^0.0.0",
     "vue-router": "^4.0.12",
     "vue-table-dynamic": "^0.4.10",
     "vue3-table-lite": "^1.1.5"

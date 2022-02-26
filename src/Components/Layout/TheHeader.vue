@@ -17,6 +17,16 @@
         <li>
           <router-link to="/UserProfile">My Profile</router-link>
         </li>
+        <li>
+          <router-link to="/Login">Login</router-link>
+        </li>
+        <li>
+          <router-link to="/Register">Register</router-link>
+        </li>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+        
         <!-- <li v-if="isLoggedIn">
           <router-link to="/requests">Personnel Overview</router-link>
         </li>
