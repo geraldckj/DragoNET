@@ -14,7 +14,8 @@
     "uninstall": "^0.0.0",
     "vue-router": "^4.0.12",
     "vue-table-dynamic": "^0.4.10",
-    "vue3-table-lite": "^1.1.5"
+    "vue3-table-lite": "^1.1.5",
+    "vuex": "^4.0.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

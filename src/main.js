@@ -6,6 +6,8 @@ import router from './router.js';
 import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap"
 
+import store from './Store/Index.js';
+
 import BaseAlert from './Components/UI/BaseAlert.vue';
 import BaseButton from './Components/UI/BaseButton.vue';
 import BaseCard from './Components/UI/BaseCard.vue';
@@ -18,6 +20,7 @@ import UserBaseTable from './Components/UI/UserBaseTable.vue';
 const app = createApp(App);
 
 app.use(router);
+app.use(store);
 
 
 app.component('base-card', BaseCard);

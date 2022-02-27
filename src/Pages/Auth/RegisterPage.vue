@@ -2,27 +2,29 @@
 <div>
     <base-card>
         <div class="vue-template">
-            <form>
+          <button @click="checkData">Check Data</button>
+          <button @click="testStoreGetter">Test Store Getter</button>
+            <form @submit.prevent="submitForm">
                 <h3>Register</h3>
                 <div class="form-group">
-                    <label>NRIC </label>
-                    <input type="text" class="form-control form-control-lg" />
+                    <label for="NRIC">NRIC </label>
+                    <input type="text" class="form-control form-control-lg" id="NRIC"  v-model.trim="formData.NRIC"/>
                 </div>
                 <div class="form-group">
-                    <label>Name</label>
-                    <input type="text" class="form-control form-control-lg" />
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control form-control-lg" id="name" v-model.trim="formData.name" />
                 </div>
                 <div class="form-group">
                     <label>Phone Number</label>
-                    <input type="number" class="form-control form-control-lg" />
+                    <input type="number" class="form-control form-control-lg" id="phoneNum" v-model.trim="formData.phoneNum"/>
                 </div>
                 <div class="form-group" style="text-align: center">
                     <label>Enlistment Date</label>
-                    <input type="date" class="form-control form-control-lg" />
+                    <input type="date" id="enlistDate" class="form-control form-control-lg" v-model.trim="formData.enlistDate"/>
                 </div>
                 <div class="form-group">
                     <label>Entity</label>
-                    <select name="Entity" class="form-control form-control-lg">
+                    <select name="Entity" class="form-control form-control-lg" id="entity" v-model.trim="formData.entity">
                         <option>SCC</option>
                         <option>IRF</option>
                         <option>PLT</option>
@@ -31,15 +33,15 @@
                 </div>
                 <div class="form-group">
                     <label>ORD Date</label>
-                    <input type="date" class="form-control form-control-lg" />
+                    <input type="date" class="form-control form-control-lg" id="ordDate" v-model.trim="formData.ordDate"/>
                 </div>
                 <div class="form-group">
                     <label>Password</label>
-                    <input type="password" class="form-control form-control-lg" />
+                    <input type="password" class="form-control form-control-lg" id="password" v-model.trim="formData.password"/>
                 </div>
                 <div class="form-group">
                     <label>Re-Enter Password</label>
-                    <input type="password" class="form-control form-control-lg" />
+                    <input type="password" class="form-control form-control-lg" id="passwordConfirm" v-model.trim="formData.passwordConfirm"/>
                 </div>
                 <button type="submit" class="btn btn-dark btn-lg btn-block">Sign In</button>
                 <p class="forgot-password text-right mt-2 mb-4">
@@ -59,8 +61,50 @@
 </template>
 
 <script>
+
+import {reactive} from 'vue'
+import {useStore} from 'vuex'
+
 export default{
 // TODO: link up form fields with local store, and store it locally
+  setup(){
+    const store = useStore()
+    // https://vuex.vuejs.org/guide/composition-api.html#accessing-mutations-and-actions
+    const formData = reactive({ //TODO: Send 
+      name: '',
+      NRIC: '',
+      phoneNum: '',
+      enlistDate: null,
+      entity:'',
+      ordDate: null,
+      password: '',
+      passwordConfirm: '',
+    })
+
+    function checkData(){
+      console.log(formData)
+    }
+
+    function submitForm(){
+      formData
+    }
+
+    function testStoreGetter(){
+      console.log(store.getters['auth/test']);
+      // console.log(store.state.test); //this works, taking straight from state in store within index.js
+      // console.log(store.auth.state.test);
+    }
+
+    return {
+      formData: formData,
+      checkData,
+      submitForm,
+      testStoreGetter
+    }
+  }
+
+
+
 // TODO: Ensure that Sign In button redirects user to homepage
     // only redirect if Register is ok, else stays on form page
 // TODO: add a local token to user to verify isAuthenticated
