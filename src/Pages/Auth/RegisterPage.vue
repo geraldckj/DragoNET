@@ -2,10 +2,14 @@
 <div>
     <base-card>
         <div class="vue-template">
-          <button @click="checkData">Check Data</button>
-          <button @click="testStoreGetter">Test Store Getter</button>
-            <form @submit.prevent="submitForm">
+          <button @click="checkData">Check State</button>
+          <!-- <button @click="testVuex">Test Vuex</button> -->
+            <form @submit.prevent="testAction">
                 <h3>Register</h3>
+                <div class="form-group">
+                    <label for="rank">Rank </label>
+                    <input type="text" class="form-control form-control-lg" id="rank"  v-model.trim="formData.rank"/>
+                </div>
                 <div class="form-group">
                     <label for="NRIC">NRIC </label>
                     <input type="text" class="form-control form-control-lg" id="NRIC"  v-model.trim="formData.NRIC"/>
@@ -43,7 +47,7 @@
                     <label>Re-Enter Password</label>
                     <input type="password" class="form-control form-control-lg" id="passwordConfirm" v-model.trim="formData.passwordConfirm"/>
                 </div>
-                <button type="submit" class="btn btn-dark btn-lg btn-block">Sign In</button>
+                <button type="submit" class="btn btn-dark btn-lg btn-block" @click='registerNewUser'>Register</button>
                 <p class="forgot-password text-right mt-2 mb-4">
                     <router-link to="/forgot-password">Forgot password ?</router-link>
                 </p>
@@ -64,13 +68,16 @@
 
 import {reactive} from 'vue'
 import {useStore} from 'vuex'
+import { useRouter } from 'vue-router'
 
 export default{
 // TODO: link up form fields with local store, and store it locally
   setup(){
-    const store = useStore()
+    const router = useRouter()
+    const store = useStore();
     // https://vuex.vuejs.org/guide/composition-api.html#accessing-mutations-and-actions
-    const formData = reactive({ //TODO: Send 
+    const formData = reactive({ 
+      rank: '',
       name: '',
       NRIC: '',
       phoneNum: '',
@@ -82,24 +89,21 @@ export default{
     })
 
     function checkData(){
-      console.log(formData)
+      const storeData = store.getters['auth/checkStateUserData'];
+      console.log(storeData.password)
     }
 
-    function submitForm(){
-      formData
-    }
-
-    function testStoreGetter(){
-      console.log(store.getters['auth/test']);
-      // console.log(store.state.test); //this works, taking straight from state in store within index.js
-      // console.log(store.auth.state.test);
+    function registerNewUser(){
+      console.log(typeof(formData))
+      store.dispatch('auth/registerNewUser', formData);
+      store.dispatch('auth/addNewUserToFile'); //this is a redundancy, newuser is appended into an object in store then added into the main dummy data in store. To take note for future edits
+      router.replace('/AllUsers')
     }
 
     return {
       formData: formData,
       checkData,
-      submitForm,
-      testStoreGetter
+      registerNewUser,      
     }
   }
 

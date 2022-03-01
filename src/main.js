@@ -1,5 +1,4 @@
 import { createApp } from 'vue';
-import App from './App.vue';
 
 import router from './router.js';
 
@@ -7,7 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap"
 
 import store from './Store/Index.js';
-
+import App from './App.vue';
 import BaseAlert from './Components/UI/BaseAlert.vue';
 import BaseButton from './Components/UI/BaseButton.vue';
 import BaseCard from './Components/UI/BaseCard.vue';

@@ -11,8 +11,11 @@
     "axios": "^0.25.0",
     "bootstrap": "^4.6.1",
     "core-js": "^3.6.5",
+    "jquery": "^3.6.0",
+    "popper.js": "^1.16.1",
+    "router": "^2.0.0-beta.1",
     "uninstall": "^0.0.0",
-    "vue-router": "^4.0.12",
+    "vue-router": "^4.0.13",
     "vue-table-dynamic": "^0.4.10",
     "vue3-table-lite": "^1.1.5",
     "vuex": "^4.0.2"

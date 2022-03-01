@@ -11,7 +11,6 @@ const store = createStore({
     users: userModule,
   },
   state:{
-      test: 'test'
   }
 });
 
