@@ -113,6 +113,8 @@ export default{
     // only redirect if Register is ok, else stays on form page
 // TODO: add a local token to user to verify isAuthenticated
 
+//trial upload to check branch
+
 }
 </script>
 
