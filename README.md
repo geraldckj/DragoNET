@@ -1,6 +1,9 @@
 # DragoNET
 
-Dragonet, a 607SQN dashboarding project
+DragoNET, a 607SQN dashboarding project
 
 
-Test 201221 2348
+TODOS: 
+Create link between Login and store
+Establish link between login, register, store and firebase 
+Create Events page
