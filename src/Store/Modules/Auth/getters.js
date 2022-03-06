@@ -5,9 +5,14 @@ export default{
     },
     checkStateUserData(state){
         console.log(state.userData);
-        return state.userData
+        return state.allUsers
     },
     getAllUsers(state){
-        return state.dummyData
+        console.log('allUsers from state')
+        console.log(state.allUsers)
+        return state.allUsers;
+    },
+    authLogin(state){
+        return state.userData;
     }
 };

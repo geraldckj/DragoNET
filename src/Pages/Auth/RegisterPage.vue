@@ -6,6 +6,10 @@
           <!-- <button @click="testVuex">Test Vuex</button> -->
             <form @submit.prevent="testAction">
                 <h3>Register</h3>
+                 <div class="form-group">
+                    <label for="rank">Email </label>
+                    <input type="email" class="form-control form-control-lg" id="rank"  v-model.trim="formData.email"/>
+                </div>
                 <div class="form-group">
                     <label for="rank">Rank </label>
                     <input type="text" class="form-control form-control-lg" id="rank"  v-model.trim="formData.rank"/>
@@ -77,8 +81,10 @@ export default{
     const store = useStore();
     // https://vuex.vuejs.org/guide/composition-api.html#accessing-mutations-and-actions
     const formData = reactive({ 
+      email: '',
       rank: '',
       name: '',
+      username: '',
       NRIC: '',
       phoneNum: '',
       enlistDate: null,
@@ -95,10 +101,13 @@ export default{
 
     function registerNewUser(){
       console.log(typeof(formData))
-      store.dispatch('auth/registerNewUser', formData);
-      store.dispatch('auth/addNewUserToFile'); //this is a redundancy, newuser is appended into an object in store then added into the main dummy data in store. To take note for future edits
+      formData.username = formData.name.toLowerCase();
+      store.dispatch('auth/addNewUserFirebase', formData);
+      store.dispatch('users/registerUser',formData);
+      // store.dispatch('auth/addNewUserToFile'); //this is a redundancy, newuser is appended into an object in store then added into the main dummy data in store. To take note for future edits
       router.replace('/AllUsers')
     }
+
 
     return {
       formData: formData,
@@ -106,14 +115,6 @@ export default{
       registerNewUser,      
     }
   }
-
-
-
-// TODO: Ensure that Sign In button redirects user to homepage
-    // only redirect if Register is ok, else stays on form page
-// TODO: add a local token to user to verify isAuthenticated
-
-//trial upload to check branch
 
 }
 </script>

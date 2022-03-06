@@ -8,12 +8,7 @@ export default {
   namespaced: true,
   state() {
     return {
-      test: {
-        text: "test auth info ",
-        text2: "test 2 auth info"   
-      },
-      userData: null,
-      dummyData: {
+      allUsers: {
         rows : [{
           rank: '3SG',
           name: 'Gerald',
@@ -21,6 +16,8 @@ export default {
           batchNum: '04/20',
           sqnCycle: '2',
           ordDate: '28 JUL 2022',
+          userName: "gerald",
+          password:'111'
         },
         {
           rank: '2LT',
@@ -29,6 +26,7 @@ export default {
           batchNum: '03/20',
           sqnCycle: '3',
           ordDate: '28 MAY 2022',
+          username: 'ron'
         },
         {
           rank: 'CPL',
@@ -37,10 +35,14 @@ export default {
           batchNum: '01/21',
           sqnCycle: '1',
           ordDate: '28 NOV 2022',
+          username: 'joshua'
         },
       ],
-      }
-     };
+      },
+      didAutoLogout: false,
+      userId: null,
+      token: null,
+   };
   },
   mutations,
   actions,
