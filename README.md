@@ -8,4 +8,3 @@ Establish error handling for duplicate emails, as registering with dupe email th
 Create link for allusers to pull from firebase rtdb
 Create link for login page 
 
-git remote test
