@@ -2,15 +2,15 @@
 <div>
     <base-card>
         <div class="vue-template">
-            <form>
+            <form @submit.prevent="loginUser">
                 <h3>Log In</h3>
                 <div class="form-group">
-                    <label>Email address</label>
-                    <input type="email" class="form-control form-control-lg" />
+                    <label for="email">Email address</label>
+                    <input type="text" class="form-control form-control-lg" v-model.trim="formData.username"/>
                 </div>
                 <div class="form-group">
                     <label>Password</label>
-                    <input type="password" class="form-control form-control-lg" />
+                    <input type="password" class="form-control form-control-lg" v-model.trim="formData.password" />
                 </div>
                 <button type="submit" class="btn btn-dark btn-lg btn-block">Sign In</button>
                 <p class="forgot-password text-right mt-2 mb-4">
@@ -30,9 +30,41 @@
 </template>
 
 <script>
-export default{
-  
+import {reactive, computed} from 'vue'
+import {useStore} from 'vuex'
+// import { useRouter } from 'vue-router'
 
+export default{
+  setup(){
+    // const router = useRouter();
+    const store = useStore();
+
+    const formData = reactive({
+      username: null,
+      password: null,
+    })
+
+    const allUsers = computed(() => store.getters['auth/getAllUsers']);
+
+    function loginUser(){ //login functions should use firebase's built in auth module, instead of processing information locally
+
+      console.log(formData)
+      console.log("allUsers value")
+      console.log(allUsers.value.rows)
+      console.log(allUsers.value.rows.userName== 'gerald')
+      
+      //do up getters in auth store to authtenticate user, and change the value of user state to isAuthenticated
+      const findUser = allUsers.value.rows.filter(user => user.username == formData.username ) //&& user.password == formData.password
+      console.log(findUser)
+      
+      
+    }
+
+  return {
+    formData,
+    loginUser,
+    }
+  }
 }
 </script>
 

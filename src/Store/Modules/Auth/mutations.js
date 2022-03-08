@@ -2,29 +2,28 @@
 // import dummyData from '../../../assets/DummyData.js'
 
 export default{
-    registerNewUser (state, payload){
-        console.log('mutations form data')
-        console.log([payload])
-        state.userData = payload;
-    },
-    // testMutation(state){
-    //     state.test = 'changed state.test'
-    //     console.log(state.test)
-    // }
-    addNewUserToFile(state){
+    // registerNewUser (state, payload){
+    //     console.log('mutations form data')
+    //     console.log([payload])
+    //     state.userData = payload;
+    // },
+    addNewUser(state, payload){
         const newUser = {
-            rank: state.userData.rank,
-            name: state.userData.name,
-            entity: state.userData.entity,
+            rank: payload.rank,
+            name: payload.name,
+            entity: payload.entity,
             batchNum: 3,
             sqnCycle: 2,
-            ordDate: state.userData.ordDate,
+            ordDate: payload.ordDate,
         }
-        const existingUsers = state.dummyData
-        // console.log('existing Users: ')
-        // console.log(existingUsers.rows[0]);
-        // console.log(typeof(existingUsers.rows))
-        existingUsers.rows.push(newUser);
-        console.log(existingUsers);
-    }
+        state.allUsers.rows.push(newUser);
+        // const existingUsers = state.allUsers
+        // existingUsers.rows.push(newUser);
+        console.log(state.allUsers);
+    },
+    setUser(state, payload) {
+        state.token = payload.token;
+        state.userId = payload.userId;
+        state.didAutoLogout = false;
+      },
 };
