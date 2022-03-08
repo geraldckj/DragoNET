@@ -72,12 +72,12 @@
 
 import {reactive} from 'vue'
 import {useStore} from 'vuex'
-import { useRouter } from 'vue-router'
+// import { useRouter } from 'vue-router'
 
 export default{
 // TODO: link up form fields with local store, and store it locally
   setup(){
-    const router = useRouter()
+    // const router = useRouter()
     const store = useStore();
     // https://vuex.vuejs.org/guide/composition-api.html#accessing-mutations-and-actions
     const formData = reactive({ 
@@ -94,24 +94,20 @@ export default{
       passwordConfirm: '',
     })
 
-    function checkData(){
-      const storeData = store.getters['auth/checkStateUserData'];
-      console.log(storeData.password)
-    }
-
     function registerNewUser(){
-      console.log(typeof(formData))
       formData.username = formData.name.toLowerCase();
-      store.dispatch('auth/addNewUserFirebase', formData);
-      store.dispatch('users/registerUser',formData);
-      // store.dispatch('auth/addNewUserToFile'); //this is a redundancy, newuser is appended into an object in store then added into the main dummy data in store. To take note for future edits
-      router.replace('/AllUsers')
+      console.log(formData);
+
+      store.dispatch('auth/addNewUserFirebase', formData); //register user account 
+      
+      store.dispatch('users/registerUser',formData); //store user data in form into db
+
+      // router.replace('/AllUsers')
     }
 
 
     return {
       formData: formData,
-      checkData,
       registerNewUser,      
     }
   }

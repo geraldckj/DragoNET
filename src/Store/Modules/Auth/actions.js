@@ -20,27 +20,28 @@ export default{
                 body: JSON.stringify({
                     email: payload.email,
                     password: payload.password,
+                    returnSecureToken: true,
                 })
             }
         );
-        const responseData = await response.json
+        const responseData = await response.json();
 
         if (!response.ok) {
             const error = new Error(
               responseData.message || 'Failed to authenticate. Check your login data.'
             );
             throw error;
-          }
+        }
 
         localStorage.setItem('token', responseData.idToken);
         localStorage.setItem('userId', responseData.localId);
         // localStorage.setItem('tokenExpiration', expirationDate); //used for auto login/logout 
         
+        
         context.commit('setUser', {
             token: responseData.idToken,
             userId: responseData.localId,
             tokenExpiration: responseData.expiresIn
-          });
-    
+          });    
     }
 };

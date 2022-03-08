@@ -1,19 +1,18 @@
 export default {
     async registerUser(context, payload) {
       const userId = context.rootGetters.userId;
-      const userData = {
-        rank: payload.rank,
-        name: payload.name,
-        username: payload.username,
-        NRIC: payload.NRIC,
-        phoneNum: payload.phoneNum,
-        enlistDate: payload.enlistDate,
-        entity: payload.entity,
-        ordDate: payload.ordDate,
-      };
+      // const userData = {
+      //   rank: payload.rank,
+      //   name: payload.name,
+      //   username: payload.username,
+      //   NRIC: payload.NRIC,
+      //   phoneNum: payload.phoneNum,
+      //   enlistDate: payload.enlistDate,
+      //   entity: payload.entity,
+      //   ordDate: payload.ordDate,
+      // };
   
     //   const token = context.rootGetters.token;
-  
     //   const response = await fetch(
     //    `https://dragonet-8888-default-rtdb.asia-southeast1.firebasedatabase.app/${userId}.json?auth=` +
     //    token,
@@ -23,11 +22,18 @@ export default {
     //     }
     //   );
 
-      const response = await fetch(
-          `https://dragonet-8888-default-rtdb.asia-southeast1.firebasedatabase.app/`,
+      const response = await fetch(`https://dragonet-8888-default-rtdb.asia-southeast1.firebasedatabase.app/allUsers/${userId}.json`,
           {
               method: 'POST',
-              body: JSON.stringify(userData)
+              body: JSON.stringify({
+                rank: payload.rank,
+                name: payload.name,
+                username: payload.username,
+                NRIC: payload.NRIC,
+                phoneNum: payload.phoneNum,
+                enlistDate: payload.enlistDate,
+                entity: payload.entity,
+                ordDate: payload.ordDate,})
           }
       )
   
@@ -37,12 +43,12 @@ export default {
         // error ...
       }
   
-      context.commit('addNewUser', {
-        ...userData,
-        id: userId
-      });
+      // context.commit('auth/addNewUser', 
+      //   ...userData,
+      //   {root: true}
+      // );
     },
-//     async loadCoaches(context, payload) {
+//     async loadCoaches(context, payload) { //function for loading data, use this to generate allusers table
 //       if (!payload.forceRefresh && !context.getters.shouldUpdate) {
 //         return;
 //       }
