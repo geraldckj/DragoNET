@@ -14,12 +14,14 @@ import BasePopout from './Components/UI/BasePopout.vue';
 import BaseDialog from './Components/UI/BaseDialog.vue';
 import UserBaseTable from './Components/UI/UserBaseTable.vue';
 
+
 // import store from './store/index.js';
 
 const app = createApp(App);
 
 app.use(router);
 app.use(store);
+
 
 
 app.component('base-card', BaseCard);

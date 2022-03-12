@@ -1,10 +1,12 @@
 <template>
 <div>
+  <base-alert v-if="existingUser" show variant="danger">User already exists, Login instead!</base-alert>
     <base-card>
-        <div class="vue-template">
+      <div class="vue-template">
           <button @click="checkData">Check State</button>
           <!-- <button @click="testVuex">Test Vuex</button> -->
             <form @submit.prevent="testAction">
+              
                 <h3>Register</h3>
                  <div class="form-group">
                     <label for="rank">Email </label>
@@ -67,10 +69,9 @@
     </base-card>
 </div>
 </template>
-
 <script>
 
-import {reactive} from 'vue'
+import {reactive, computed, onBeforeMount } from 'vue'
 import {useStore} from 'vuex'
 // import { useRouter } from 'vue-router'
 
@@ -94,21 +95,35 @@ export default{
       passwordConfirm: '',
     })
 
+    const existingUser = computed(()=>{
+      console.log('updated')
+      console.log(localStorage.existingUser)
+     return store.getters['auth/existinguser'];
+    })
+
     function registerNewUser(){
       formData.username = formData.name.toLowerCase();
       console.log(formData);
-
       store.dispatch('auth/addNewUserFirebase', formData); //register user account 
       
-      store.dispatch('users/registerUser',formData); //store user data in form into db
+      if (existingUser.value != true){
+        store.dispatch('users/registerUser',formData); //store user data in form into db
+      }
 
       // router.replace('/AllUsers')
     }
 
+    onBeforeMount(() => {
+      console.log('onBeforeMount called')
+      // localStorage.removeItem('existingUser');
+      localStorage.setItem('existingUser', false);
+      console.log(localStorage.existingUser)
+    })
 
     return {
       formData: formData,
-      registerNewUser,      
+      registerNewUser,     
+      existingUser 
     }
   }
 

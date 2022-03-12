@@ -28,8 +28,13 @@ export default{
 
         if (!response.ok) {
             const error = new Error(
-              responseData.message || 'Failed to authenticate. Check your login data.'
+            //   responseData.message || 'Failed to authenticate. Check your login data.'
+              responseData.message
             );
+            localStorage.setItem('existingUser', true);
+            console.log('error')
+            context.commit('existingUser', true);
+            console.log(localStorage.existingUser)
             throw error;
         }
 

@@ -7,6 +7,10 @@ export default{
     //     console.log([payload])
     //     state.userData = payload;
     // },
+    existingUser(state, payload){
+        console.log(payload)
+        state.existingUser = payload
+    },
     addNewUser(state, payload){
         const newUser = {
             rank: payload.rank,

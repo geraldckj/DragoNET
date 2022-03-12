@@ -14,5 +14,8 @@ export default{
     },
     authLogin(state){
         return state.userData;
+    },
+    existingUser(state){
+        return state.existingUser;
     }
 };
