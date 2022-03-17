@@ -1,5 +1,8 @@
 <template>
 <div>
+  <base-dialog :show="!!error" title=" User already exists, Login instead!" @close="handleError">
+      <p>{{ error }}</p>
+    </base-dialog>
   <base-alert v-if="existingUser" show variant="danger">User already exists, Login instead!</base-alert>
     <base-card>
       <div class="vue-template">
@@ -71,15 +74,16 @@
 </template>
 <script>
 
-import {reactive, computed, onBeforeMount } from 'vue'
+import {reactive, computed, onBeforeMount, ref } from 'vue'
 import {useStore} from 'vuex'
-// import { useRouter } from 'vue-router'
+import { useRouter } from 'vue-router'
 
 export default{
 // TODO: link up form fields with local store, and store it locally
   setup(){
-    // const router = useRouter()
+    const router = useRouter()
     const store = useStore();
+    const error = ref(null);
     // https://vuex.vuejs.org/guide/composition-api.html#accessing-mutations-and-actions
     const formData = reactive({ 
       email: '',
@@ -96,34 +100,35 @@ export default{
     })
 
     const existingUser = computed(()=>{
-      console.log('updated')
-      console.log(localStorage.existingUser)
      return store.getters['auth/existinguser'];
     })
-
-    function registerNewUser(){
+    
+    async function registerNewUser(){
       formData.username = formData.name.toLowerCase();
-      console.log(formData);
-      store.dispatch('auth/addNewUserFirebase', formData); //register user account 
-      
-      if (existingUser.value != true){
-        store.dispatch('users/registerUser',formData); //store user data in form into db
+      try {
+        await store.dispatch('auth/addNewUserFirebase', formData); //register user account 
+        await store.dispatch('users/registerUser',formData); //store user data in form into db
+        router.replace('/AllUsers')
+      } catch (err){
+        error.value = err.message || 'Failed to Authenticate, try logging in'
+        console.log(err.message)
       }
+    }
 
-      // router.replace('/AllUsers')
+    function handleError(){
+      error.value = null
     }
 
     onBeforeMount(() => {
-      console.log('onBeforeMount called')
-      // localStorage.removeItem('existingUser');
       localStorage.setItem('existingUser', false);
-      console.log(localStorage.existingUser)
     })
 
     return {
       formData: formData,
       registerNewUser,     
-      existingUser 
+      existingUser ,
+      error,
+      handleError
     }
   }
 

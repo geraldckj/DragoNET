@@ -28,11 +28,9 @@ export default{
 
         if (!response.ok) {
             const error = new Error(
-            //   responseData.message || 'Failed to authenticate. Check your login data.'
-              responseData.message
+              responseData.message || 'User already exists, login instead'
             );
             localStorage.setItem('existingUser', true);
-            console.log('error')
             context.commit('existingUser', true);
             console.log(localStorage.existingUser)
             throw error;
