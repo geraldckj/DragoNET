@@ -16,10 +16,8 @@
 
 <script>
 import TableLite from 'vue3-table-lite';
-import {reactive,  } from 'vue';
-// import dummyData from '../../assets/DummyData.js';
+import {reactive, onMounted, computed} from 'vue';
 import {useStore} from 'vuex';
-// src\Pages\Admin\DummyData.js
 
 export default{
   components: {
@@ -27,13 +25,23 @@ export default{
   },
   setup() {
     const store = useStore();
-    const dummyData = store.getters['auth/getAllUsers'];
+    // const dummyData = store.getters['auth/getAllUsers'];
+    function getDataFromFireBase(){
+      console.log('onBeforemount')
+      store.dispatch('users/getAllUsers'); //store user data from firebase into store
+    }
 
-    // beforeCreate(() => {
-    //     dummyData.value = store.getters['auth/getAllUsers'];
-    //   })
+    onMounted(() => {
+      console.log('onBeforemount')
+      store.dispatch('users/getAllUsers'); //store user data from firebase into store
+    })
 
-    
+    const allUsers = computed(()=>{
+      const test = store.getters['users/getUsers']
+      console.log(test)
+      return store.getters['users/getUsers']
+    })
+
     
     // Init Your table settings
     const table = reactive({
@@ -83,20 +91,19 @@ export default{
           sortable: false,
         },
       ],
-      rows: dummyData.rows,
-      totalRecordCount: dummyData.rows.length, //variable according to the amount of dummy data
+      rows: allUsers.value.rows,
+      totalRecordCount: allUsers.value.rows.length, //variable according to the amount of dummy data
       sortable: {
         order: "id",
         sort: "asc",
       },
     });
 
-    
-      
-
     return {
       table,
-      dummyData
+      // dummyData,
+      allUsers,
+      getDataFromFireBase
     };
   },
 }

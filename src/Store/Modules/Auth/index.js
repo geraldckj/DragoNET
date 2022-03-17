@@ -37,8 +37,9 @@ export default {
           ordDate: '28 NOV 2022',
           username: 'joshua'
         },
-      ],
+        ],
       },
+      users:{},
       didAutoLogout: false,
       userId: null,
       token: null,
