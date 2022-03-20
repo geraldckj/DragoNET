@@ -13,7 +13,7 @@
                 <h3>Register</h3>
                  <div class="form-group">
                     <label for="rank">Email </label>
-                    <input type="email" class="form-control form-control-lg" id="rank"  v-model.trim="formData.email"/>
+                    <input type="email" class="form-control form-control-lg" id="email"  v-model.trim="formData.email"/>
                 </div>
                 <div class="form-group">
                     <label for="rank">Rank </label>

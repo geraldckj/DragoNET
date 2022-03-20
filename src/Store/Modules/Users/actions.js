@@ -1,13 +1,17 @@
 export default {
-    async getAllusers(context){
-      const response = await fetch(`https://dragonet-8888-default-rtdb.asia-southeast1.firebasedatabase.app/allUsers.json`
+    async getUsersFromFirebase(context){ //get all user data from firebase, put into local state
+      const response = await fetch(
+        `https://dragonet-8888-default-rtdb.asia-southeast1.firebasedatabase.app/allUsers.json`
       );
+
       const responseData = await response.json();
-      console.log(responseData);
+
       if (!response.ok) {
         const error = new Error(responseData.message || 'Failed to fetch!');
         throw error;
       }
+
+
       const allUsers = {
         rows: []
       };
@@ -22,17 +26,18 @@ export default {
           entity: responseData[key].entity,
           ordDate: responseData[key].ordDate
         }
-        allUsers.push(user.rows)
+        allUsers.rows.push(user)
       }
-      context.commit('setUsers', allUsers)
+      context.commit('addUsersToStore', allUsers)
     },
 
     async registerUser(context, payload) {
-      const userId = context.rootGetters.userId;
-      const response = await fetch(`https://dragonet-8888-default-rtdb.asia-southeast1.firebasedatabase.app/allUsers/${userId}.json`,
+      // const userId = context.rootGetters.userId;
+      const response = await fetch(`https://dragonet-8888-default-rtdb.asia-southeast1.firebasedatabase.app/allUsers.json`,
           {
               method: 'POST',
               body: JSON.stringify({
+                email: payload.email,   
                 rank: payload.rank,
                 name: payload.name,
                 username: payload.username,
@@ -54,37 +59,5 @@ export default {
       //   {root: true}
       // );
     },
-//     async loadCoaches(context, payload) { //function for loading data, use this to generate allusers table
-//       if (!payload.forceRefresh && !context.getters.shouldUpdate) {
-//         return;
-//       }
-  
-//       const response = await fetch(
-//         `https://vue-http-demo2-bd21b-default-rtdb.asia-southeast1.firebasedatabase.app/coaches.json`
-//       );
-//       const responseData = await response.json();
-  
-//       if (!response.ok) {
-//         const error = new Error(responseData.message || 'Failed to fetch!');
-//         throw error;
-//       }
-  
-//       const coaches = [];
-  
-//       for (const key in responseData) {
-//         const coach = {
-//           id: key,
-//           firstName: responseData[key].firstName,
-//           lastName: responseData[key].lastName,
-//           description: responseData[key].description,
-//           hourlyRate: responseData[key].hourlyRate,
-//           areas: responseData[key].areas
-//         };
-//         coaches.push(coach);
-//       }
-  
-//       context.commit('setCoaches', coaches);
-//       context.commit('setFetchTimestamp');
-//     }
   };
   

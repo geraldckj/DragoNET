@@ -1,5 +1,6 @@
 export default {
-    async setUsers(state, payload){
-        state.users = payload;
+    addUsersToStore(state, responseData){
+        state.users = responseData;
+        console.log(state.users)
     }
 }

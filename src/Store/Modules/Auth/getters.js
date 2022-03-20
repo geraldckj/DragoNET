@@ -8,8 +8,6 @@ export default{
         return state.allUsers
     },
     getAllUsers(state){
-        console.log('allUsers from state')
-        console.log(state.allUsers)
         return state.allUsers;
     },
     authLogin(state){
