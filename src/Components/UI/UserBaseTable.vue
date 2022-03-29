@@ -45,13 +45,6 @@ export default{
         console.log('unable to fetch')
       }
       loading.value = false;
-
-      
-
-      // console.log('retreiving store userdata')
-      // allUsers2.value.push(store.getters['users/getUsers'])
-      // console.log(allUsers2.value)
-      // console.log('DONE retreiving store userdata')
     }
 
     // async function getStoreUsers(){

@@ -105,12 +105,23 @@ export default{
     
     async function registerNewUser(){
       formData.username = formData.name.toLowerCase();
+
+      if (formData.password.length < 6){
+        error.value = "Password must be 6 characters and above"
+        return
+      }
+      else if ( formData.password != formData.passwordConfirm){
+        console.log("Passwords don't match!")
+        error.value = "Passwords don't match"
+        return
+      }      
+    
       try {
         await store.dispatch('auth/addNewUserFirebase', formData); //register user account 
         await store.dispatch('users/registerUser',formData); //store user data in form into db
         router.replace('/AllUsers')
       } catch (err){
-        error.value = err.message || 'Failed to Authenticate, try logging in'
+        error.value = err.message || 'User exists, try logging in'
         console.log(err.message)
       }
     }
