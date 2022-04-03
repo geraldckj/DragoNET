@@ -32,11 +32,11 @@
 <script>
 import {reactive, computed} from 'vue'
 import {useStore} from 'vuex'
-// import { useRouter } from 'vue-router'
+import { useRouter } from 'vue-router'
 
 export default{
   setup(){
-    // const router = useRouter();
+    const router = useRouter();
     const store = useStore();
 
     const formData = reactive({
@@ -48,10 +48,10 @@ export default{
 
     function loginUser(){ //login functions should use firebase's built in auth module, instead of processing information locally
 
-      console.log(formData)
-      console.log("allUsers value")
-      console.log(allUsers.value.rows)
-      console.log(allUsers.value.rows.userName == 'gerald')
+      // console.log(formData)
+      // console.log("allUsers value")
+      // console.log(allUsers.value.rows)
+      // console.log(allUsers.value.rows.userName == 'gerald')
       
       //do up getters in auth store to authtenticate user, and change the value of user state to isAuthenticated
       const findUser = allUsers.value.rows.filter(user => user.username == formData.username ) //&& user.password == formData.password
@@ -66,6 +66,7 @@ export default{
       // run action to authtnticat user and get login token from firebase console
       await store.dispatch('auth/loginUser', formData) //token stored inside localstorage
       console.log(localStorage)
+      router.push('/userEvents')
     }
     
 

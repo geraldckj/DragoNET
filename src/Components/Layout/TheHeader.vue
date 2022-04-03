@@ -18,24 +18,19 @@
           <router-link to="/UserProfile">My Profile</router-link>
         </li>
         <li>
-          <router-link to="/Login">Login</router-link>
-        </li>
-        <li>
           <router-link to="/Register">Register</router-link>
         </li>
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         
         
-        <!-- <li v-if="isLoggedIn">
-          <router-link to="/requests">Personnel Overview</router-link>
+        <li v-if="isLoggedIn === true">
+          <base-button @click="logout">Logout</base-button>
         </li>
         <li v-else>
-          <router-link to="/auth">Login</router-link>
+          <router-link to="/Login">Login</router-link>
         </li>
-        <li v-if="isLoggedIn">
-          <base-button @click="logout">Logout</base-button>
-        </li> -->
+        
       </ul>
     </nav>
   </header>
@@ -43,17 +38,17 @@
 
 <script>
 export default {
-//   computed: {
-//     isLoggedIn() {
-//       return this.$store.getters.isAuthenticated;
-//     }
-//   },
-//   methods: {
-//     logout() {
-//       this.$store.dispatch('logout');
-//       this.$router.replace('/coaches');
-//     }
-//   }
+  computed: {
+    isLoggedIn() {
+      return this.$store.getters['auth/isAuthenticated'];
+    }
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch('auth/logout');
+      // this.$router.replace('/mainpage');
+    }
+  }
 }
 </script>
 

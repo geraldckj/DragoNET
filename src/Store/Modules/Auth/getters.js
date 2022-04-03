@@ -1,8 +1,4 @@
 export default{
-    test(state){
-        console.log('inside getters.js: ' + state.test)
-        return state.test;
-    },
     checkStateUserData(state){
         console.log(state.userData);
         return state.allUsers
@@ -15,5 +11,18 @@ export default{
     },
     existingUser(state){
         return state.existingUser;
+    },
+    isAuthenticated(){
+        let tmp = localStorage.token
+        console.log('getters storage token')
+        console.log(localStorage.token)
+        if (tmp === null) {
+            console.log('if triggers')
+            return false
+        }
+        else if (tmp !== null) {
+            console.log('else triggers')
+            return true;
+        }
     }
 };

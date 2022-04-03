@@ -13,7 +13,6 @@ export default{
     // },
 
     async loginUser(context, payload){
-
         console.log(payload.email)
         console.log(payload.password)
         const url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBFKkTdWqcznM6mthra4DUahWw29HiJPCA`
@@ -85,5 +84,12 @@ export default{
             userId: responseData.localId,
             tokenExpiration: responseData.expiresIn
           });    
+    },
+
+    logout(){
+        localStorage.removeItem('token');
+        console.log('logout token:')
+        console.log(localStorage.getItem('token'))
+        console.log('logout')
     }
 };
