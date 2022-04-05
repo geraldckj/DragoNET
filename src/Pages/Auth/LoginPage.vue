@@ -46,20 +46,11 @@ export default{
 
     const allUsers = computed(() => store.getters['auth/getAllUsers']);
 
-    function loginUser(){ //login functions should use firebase's built in auth module, instead of processing information locally
-
-      // console.log(formData)
-      // console.log("allUsers value")
-      // console.log(allUsers.value.rows)
-      // console.log(allUsers.value.rows.userName == 'gerald')
-      
+    function loginUser(){ //login functions should use firebase's built in auth module, instead of processing information locally      
       //do up getters in auth store to authtenticate user, and change the value of user state to isAuthenticated
       const findUser = allUsers.value.rows.filter(user => user.username == formData.username ) //&& user.password == formData.password
       console.log(findUser)
-
-      
     }
-
     //require email from user
 
     async function loginUser2(){

@@ -14,15 +14,19 @@ export default{
     },
     isAuthenticated(){
         let tmp = localStorage.token
-        console.log('getters storage token')
+        console.log('authenticating if user is logged in from getters')
         console.log(localStorage.token)
-        if (tmp === null) {
-            console.log('if triggers')
-            return false
+        if (tmp === undefined){
+            console.log('tmp is undefined')
         }
-        else if (tmp !== null) {
-            console.log('else triggers')
-            return true;
+
+        if(tmp !== undefined){
+            console.log('person logged in')
+            return true
+        }
+        else{
+            console.log('person not logged in')
+            return false;
         }
     }
 };

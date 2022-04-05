@@ -24,10 +24,10 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         
         
-        <li v-if="isLoggedIn === true">
+        <li v-if="compUserStatus" :key="componentKey">
           <base-button @click="logout">Logout</base-button>
         </li>
-        <li v-else>
+        <li v-else  :key="componentKey">
           <router-link to="/Login">Login</router-link>
         </li>
         
@@ -37,20 +37,46 @@
 </template>
 
 <script>
-export default {
-  computed: {
-    isLoggedIn() {
-      return this.$store.getters['auth/isAuthenticated'];
+import { ref, onMounted, computed } from 'vue'
+import {useStore} from 'vuex'
+import { useRouter } from 'vue-router'
+
+export default{
+    setup(){
+        const store = useStore()
+        const router = useRouter();
+
+        const componentKey = ref(0)
+        function logout(){
+          store.dispatch('auth/logout');
+          router.push('/login')
+        }
+
+        const compUserStatus = computed(()=>{
+            forceRerender()
+            return store.getters['auth/isAuthenticated']
+        })
+
+        function forceRerender(){
+          componentKey.value += 1
+        }
+
+        onMounted(()=>{
+            // userLoggedInWithGetter()
+        })
+
+
+        return {
+            // userLoggedInWithGetter,
+            logout,
+            compUserStatus,
+            componentKey,
+            forceRerender
+        }
     }
-  },
-  methods: {
-    logout() {
-      this.$store.dispatch('auth/logout');
-      // this.$router.replace('/mainpage');
-    }
-  }
 }
 </script>
+
 
 <style scoped>
 header {

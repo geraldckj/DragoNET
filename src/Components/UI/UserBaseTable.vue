@@ -128,11 +128,7 @@ export default{
       // setTimeout(getStoreUsers, 100)
     })
 
-    // onActivated(()=> {
-    //   allUsers3 = store.getters['auth/getAllUsers']
-    //   console.log('lifecycle hook runs')
-    //   console.log(allUsers3)
-    // })  
+
 
     return {
       table,

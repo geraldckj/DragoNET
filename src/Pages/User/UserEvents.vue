@@ -1,6 +1,6 @@
 <template>
 <div>
-    <base-card v-if="userLoggedInWithGetter">
+    <base-card v-if="userLoginStatus">
         <p>You are logged in. Congrats!</p>
     </base-card>
     <base-card v-else>
@@ -12,35 +12,36 @@
 </template>
 
 <script>
-import { computed,} from 'vue'
+import { onMounted, ref, computed} from 'vue'
 import {useStore} from 'vuex'
 // import { useRouter } from 'vue-router'
 
 export default{
     setup(){
+        const userLoginStatus = ref()
         const store = useStore()
-    // const userLoggedIn = ref(null);
 
-        const userLoggedIn = computed(() => {
-            console.log('computed runs')
-            console.log(localStorage.getItem('token'))
-            if (localStorage.getItem('token') === true){
-                return true
-            }
-            else{
-                return false
-            }
+        async function userLoggedInWithGetter(){
+            userLoginStatus.value = null
+            console.log('onMounted')
+            console.log(userLoginStatus.value)
+            userLoginStatus.value = store.getters['auth/isAuthenticated']
+            console.log(userLoginStatus.value)
+        }
+
+        const compUserStatus = computed(()=>{
+            return store.getters['auth/isAuthenticated']
         })
 
-        let userLoggedInWithGetter = computed(()=>{
-            console.log('getter runs')
-            return store.getters['auth/isAuthenticated']
+        onMounted(()=>{
+            userLoggedInWithGetter()
         })
 
     
         return {
-            userLoggedIn,
             userLoggedInWithGetter,
+            userLoginStatus,
+            compUserStatus
         }
     }
 }
