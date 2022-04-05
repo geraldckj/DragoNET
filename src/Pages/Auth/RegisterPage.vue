@@ -79,7 +79,6 @@ import {useStore} from 'vuex'
 import { useRouter } from 'vue-router'
 
 export default{
-// TODO: link up form fields with local store, and store it locally
   setup(){
     const router = useRouter()
     const store = useStore();

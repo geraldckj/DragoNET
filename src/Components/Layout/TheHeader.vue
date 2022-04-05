@@ -24,11 +24,11 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         
         
-        <li v-if="compUserStatus" :key="componentKey">
-          <base-button @click="logout">Logout</base-button>
+        <li v-if="userLoginState" :key="componentKey">
+          <base-button @click="logout(); forceRerender()">Logout</base-button>
         </li>
         <li v-else  :key="componentKey">
-          <router-link to="/Login">Login</router-link>
+          <router-link to="/Login" @click="forceRerender">Login</router-link>
         </li>
         
       </ul>
@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import { ref, onMounted, computed } from 'vue'
+import { ref, onMounted, computed, onBeforeMount, onActivated, onUpdated } from 'vue'
 import {useStore} from 'vuex'
 import { useRouter } from 'vue-router'
 
@@ -45,6 +45,7 @@ export default{
     setup(){
         const store = useStore()
         const router = useRouter();
+        const userLoginState = ref(null)
 
         const componentKey = ref(0)
         function logout(){
@@ -61,9 +62,41 @@ export default{
           componentKey.value += 1
         }
 
-        onMounted(()=>{
-            // userLoggedInWithGetter()
+        const switchButton = computed(()=> {
+          console.log(componentKey)
+          console.log('computed runs')
+          if (localStorage.token !== undefined){
+            return true
+          } else {
+            return false
+          }
         })
+
+        onMounted(()=>{
+            console.log('onMounted')
+        })
+        onBeforeMount(()=>{
+          console.log('onbeforeMount')
+        })
+
+        onActivated(()=>{
+          console.log('onActivated')
+        })
+
+        onUpdated(()=>{
+          console.log('onUpdated')
+          console.log(localStorage.token)
+          if (localStorage.token !== undefined){
+            userLoginState.value = true
+            console.log(userLoginState.value)
+          } else {
+            userLoginState.value = false
+          }
+        })
+
+        // created(()=>{
+        //   console.log('created')
+        // })
 
 
         return {
@@ -71,7 +104,9 @@ export default{
             logout,
             compUserStatus,
             componentKey,
-            forceRerender
+            forceRerender,
+            switchButton,
+            userLoginState
         }
     }
 }

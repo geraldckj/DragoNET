@@ -1,17 +1,5 @@
 
 export default{
-    // addNewUser(context, payload){
-    //     console.log('register new user actions' + payload)
-    //     context.commit('addNewUser', payload);
-    // },
-    // addNewUserToFile(context){
-    //     context.commit('addNewUserToFile')
-    // }
-    // testAction(context){
-    //     context.commit('testMutation');
-    //     console.log('test action success');
-    // },
-
     async loginUser(context, payload){
         console.log(payload.email)
         console.log(payload.password)

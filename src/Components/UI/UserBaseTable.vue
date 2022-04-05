@@ -25,10 +25,7 @@ export default{
   },
   setup() {
     const store = useStore();
-    const allUsers = store.getters['auth/getAllUsers'] // dummy state data
-    // var allUsers3 = reactive(store.getters['users/getUsers'])
-    // const allUsers2 = computed (() => store.getters['users/getUsers'])
-
+    const allUsers = store.getters['auth/getAllUsers']
     var loading = ref(false);
 
     async function getUsersFromFirebase (){
@@ -46,25 +43,6 @@ export default{
       }
       loading.value = false;
     }
-
-    // async function getStoreUsers(){
-    //   // table.rows = store.getters['auth/getUsers'].rows
-    //   // table.totalRecordCount = store.getters['auth/getUsers'].rows.length
-    //   console.log('getStoreUser runs')
-    //   console.log(allUsers3)
-    // }
-    
-    // const computedAllUsers = computed(()=> {
-    //   console.log('computed allUsers2Value: ')
-    //   console.log(allUsers2.value)
-    //   return allUsers2.value
-    // })
-
-
-    
-
-    // console.log('allUsers3 data')
-    // console.log(allUsers3.rows)
 
     // Init Your table settings
     const table = reactive({
@@ -132,14 +110,8 @@ export default{
 
     return {
       table,
-      // allUsers2,
       allUsers,
-      // allUsers3,
       getUsersFromFirebase,
-      
-      // getStoreUsers
-      // computedAllUsers,
-      // getUsersFromStore
     };
   },
 }
