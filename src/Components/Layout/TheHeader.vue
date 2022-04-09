@@ -94,11 +94,6 @@ export default{
           }
         })
 
-        // created(()=>{
-        //   console.log('created')
-        // })
-
-
         return {
             // userLoggedInWithGetter,
             logout,

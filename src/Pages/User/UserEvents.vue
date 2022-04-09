@@ -7,6 +7,10 @@
         <p>You are not Logged in. Login <router-link to="/login">here</router-link>
         </p>
     </base-card>
+    <div>
+        <user-event-table></user-event-table>    
+    </div>
+
     
 </div>
 </template>
@@ -15,8 +19,11 @@
 import { onMounted, ref, computed} from 'vue'
 import {useStore} from 'vuex'
 // import { useRouter } from 'vue-router'
+import UserEventTable from '../User/UserEventsTable.vue'
 
 export default{
+    components: { UserEventTable },
+
     setup(){
         const userLoginStatus = ref()
         const store = useStore()
@@ -36,6 +43,9 @@ export default{
         onMounted(()=>{
             userLoggedInWithGetter()
         })
+
+        //need to get events from firebase with a getter, similar to personnel overview
+
 
     
         return {

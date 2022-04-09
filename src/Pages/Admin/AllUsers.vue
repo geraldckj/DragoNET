@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import UserBaseTable from '../../Components/UI/UserBaseTable.vue'
+import UserBaseTable from './AllUsersTable.vue'
 
 export default{
   components: { UserBaseTable },
