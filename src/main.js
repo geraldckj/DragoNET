@@ -12,6 +12,7 @@ import BaseButton from './Components/UI/BaseButton.vue';
 import BaseCard from './Components/UI/BaseCard.vue';
 import BasePopout from './Components/UI/BasePopout.vue';
 import BaseDialog from './Components/UI/BaseDialog.vue';
+import BaseContainer from './Components/UI/BaseContainer.vue'
 // import AllUsersTable from './Components/UI/UserBaseTable.vue';
 
 
@@ -28,8 +29,7 @@ app.component('base-card', BaseCard);
 app.component('base-button', BaseButton);
 app.component('base-popout', BasePopout);
 app.component('base-alert', BaseAlert);
-// app.component('user-base-table', UserBaseTable);
+app.component('base-container', BaseContainer);
 app.component('base-dialog', BaseDialog);
 
 app.mount('#app');
-

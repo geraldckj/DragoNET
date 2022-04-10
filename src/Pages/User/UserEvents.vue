@@ -7,11 +7,9 @@
         <p>You are not Logged in. Login <router-link to="/login">here</router-link>
         </p>
     </base-card>
-    <div>
+    <base-container>
         <user-event-table></user-event-table>    
-    </div>
-
-    
+    </base-container>
 </div>
 </template>
 
@@ -45,7 +43,7 @@ export default{
         })
 
         //need to get events from firebase with a getter, similar to personnel overview
-
+        
 
     
         return {

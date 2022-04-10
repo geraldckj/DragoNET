@@ -1,6 +1,5 @@
 <template>
-  <div>
-       <table-lite
+      <table-lite
       :is-static-mode="true"
       :is-loading="table.isLoading"
       :columns="table.columns"
@@ -8,8 +7,9 @@
       :total="table.totalRecordCount"
       :sortable="table.sortable"
       @is-finished="table.isLoading = false"
+      class="table"
     ></table-lite>
-  </div>
+  
   <section>Credits for <a href="https://linmasahiro.github.io/vue3-table-lite/dist/usage.html#default" > Table </a></section>
 
 </template>
@@ -123,5 +123,9 @@ export default{
 </script>
 
 <style scoped>
+
+.table{
+  outline: none;
+}
 
 </style>
