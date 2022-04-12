@@ -15,7 +15,7 @@ export default{
     isAuthenticated(){
         let tmp = localStorage.token
         console.log('authenticating if user is logged in from getters')
-        console.log(localStorage.token)
+        console.log(localStorage)
         if (tmp === undefined){
             console.log('tmp is undefined')
         }

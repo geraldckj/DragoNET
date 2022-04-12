@@ -1,15 +1,19 @@
 <template>
 <div>
-    <base-card v-if="userLoginStatus">
+    <div v-if="userLoginStatus">
+    <base-card >
         <p>You are logged in. Congrats!</p>
-    </base-card>
-    <base-card v-else>
-        <p>You are not Logged in. Login <router-link to="/login">here</router-link>
-        </p>
     </base-card>
     <base-container>
         <user-event-table></user-event-table>    
     </base-container>
+    </div>
+    
+    <base-card v-else>
+        <p>You are not Logged in. Login <router-link to="/login">here</router-link>
+        </p>
+    </base-card>
+    
 </div>
 </template>
 

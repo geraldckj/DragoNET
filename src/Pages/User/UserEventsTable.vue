@@ -28,11 +28,11 @@ export default{
     const allUsers = store.getters['auth/getAllUsers']
     var loading = ref(false);
 
-    async function getUsersFromFirebase (){
+    async function getUserEventFromFirebase (){//change function to get logged in user from firebase
       loading.value = true;
       console.log('retreiving firebase userdata')
       try {
-        await store.dispatch('users/getUsersFromFirebase')
+        await store.dispatch('users/getUserEventfromFirebase')
         console.log('DONE retreiving firebase userdata')    
 
         table.rows = store.getters['users/getUsers'].rows
@@ -102,7 +102,7 @@ export default{
 
 
     onMounted(() => {
-     getUsersFromFirebase()
+     getUserEventFromFirebase()
       // setTimeout(getStoreUsers, 100)
     })
 
@@ -111,7 +111,7 @@ export default{
     return {
       table,
       allUsers,
-      getUsersFromFirebase,
+      getUserEventFromFirebase,
     };
   },
 }
