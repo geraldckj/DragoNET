@@ -32,6 +32,13 @@ export default{
       loading.value = true;
       console.log('retreiving firebase userdata')
       try {
+        //store use email into localStorage when logging in
+        // dispatch getter to query firebase db 
+          //use email as primary key to search db 
+          //get all events with user emails as a child 
+          
+
+
         await store.dispatch('users/getUserEventfromFirebase')
         console.log('DONE retreiving firebase userdata')    
 
