@@ -34,6 +34,7 @@ export default{
       try {
         //store use email into localStorage when logging in
         // dispatch getter to query firebase db 
+        await store.dispatch('users/getUserEvents')
           //use email as primary key to search db 
           //get all events with user emails as a child 
           

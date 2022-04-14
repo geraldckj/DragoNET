@@ -1,4 +1,3 @@
-
 export default{
     async loginUser(context, payload){
         console.log(payload.email)

@@ -56,6 +56,9 @@ export default{
     async function loginUser2(){
       // run action to authtnticat user and get login token from firebase console
       await store.dispatch('auth/loginUser', formData) //token stored inside localstorage
+
+      //store user email into localStorage
+      localStorage.setItem('userEmail', formData.email)
       console.log(localStorage)
       router.push('/userEvents')
     }
