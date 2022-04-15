@@ -8,6 +8,7 @@ import UserProfile from './Pages/User/UserProfile.vue'
 import LoginPage from './Pages/Auth/LoginPage.vue'
 import RegisterPage from './Pages/Auth/RegisterPage.vue'
 import NotFound from './Pages/NotFound.vue';
+import createNewEvent from './Pages/Admin/CreateNewEvent.vue'
 
 
 const router = createRouter({
@@ -21,7 +22,8 @@ const router = createRouter({
         {path: '/UserProfile', component: UserProfile },
         {path: '/Login', component: LoginPage },
         {path: '/Register', component: RegisterPage },
-        { path: '/:notFound(.*)', component: NotFound }
+        {path: '/CreateNewEvent', component: createNewEvent },        
+        { path: '/:notFound(.*)', component: NotFound },
     ]
 });
 

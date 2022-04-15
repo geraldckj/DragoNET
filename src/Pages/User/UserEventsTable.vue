@@ -31,25 +31,25 @@ export default{
     async function getUserEventFromFirebase (){//change function to get logged in user from firebase
       loading.value = true;
       console.log('retreiving firebase userdata')
-      try {
-        //store use email into localStorage when logging in
-        // dispatch getter to query firebase db 
-        await store.dispatch('users/getUserEvents')
-          //use email as primary key to search db 
-          //get all events with user emails as a child 
+      // try {
+      //   //store use email into localStorage when logging in
+      //   // dispatch getter to query firebase db 
+      //   await store.dispatch('users/getUserEvents')
+      //     //use email as primary key to search db 
+      //     //get all events with user emails as a child 
           
 
 
-        await store.dispatch('users/getUserEventfromFirebase')
-        console.log('DONE retreiving firebase userdata')    
+      //   await store.dispatch('users/getUserEventfromFirebase')
+      //   console.log('DONE retreiving firebase userdata')    
 
-        table.rows = store.getters['users/getUsers'].rows
-        table.totalRecordCount = store.getters['users/getUsers'].rows.length      
-      } catch (error) {
-        console.log(error)
-        console.log('unable to fetch')
-      }
-      loading.value = false;
+      //   table.rows = store.getters['users/getUsers'].rows
+      //   table.totalRecordCount = store.getters['users/getUsers'].rows.length      
+      // } catch (error) {
+      //   console.log(error)
+      //   console.log('unable to fetch')
+      // }
+      // loading.value = false;
     }
 
     // Init Your table settings

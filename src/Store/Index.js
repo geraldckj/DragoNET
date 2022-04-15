@@ -11,6 +11,8 @@ const store = createStore({
     users: userModule,
   },
   state:{
+    loggedIn: false,
+    currUserEmail: null,
   }
 });
 

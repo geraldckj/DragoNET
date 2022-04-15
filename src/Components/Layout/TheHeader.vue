@@ -1,6 +1,6 @@
 <template>
   <header>
-    <nav>
+    <nav @click="forceRerender">
       <h1>
         <router-link to="/">DragoNET</router-link>
       </h1>
@@ -17,6 +17,9 @@
         <li>
           <router-link to="/UserProfile">My Profile</router-link>
         </li>
+        <li v-if="userLoginState">
+          <router-link to="/CreateNewEvent">New Event</router-link>
+        </li>
         <li>
           <router-link to="/Register">Register</router-link>
         </li>
@@ -28,7 +31,11 @@
           <base-button @click="logout(); forceRerender()">Logout</base-button>
         </li>
         <li v-else  :key="componentKey">
-          <router-link to="/Login" @click="forceRerender">Login</router-link>
+          <router-link to="/Login" >Login</router-link>
+        </li>
+
+        <li v-if="compUserStatus">
+          <p>test</p>
         </li>
         
       </ul>
@@ -54,8 +61,8 @@ export default{
         }
 
         const compUserStatus = computed(()=>{
-            forceRerender()
-            return store.getters['auth/isAuthenticated']
+          console.log(store.getters['userLoginStatus'])
+            return store.getters['auth/userLoginStatus']
         })
 
         function forceRerender(){
@@ -63,8 +70,8 @@ export default{
         }
 
         const switchButton = computed(()=> {
-          console.log(componentKey)
-          console.log('computed runs')
+          // console.log(componentKey)
+          // console.log('computed runs')
           if (localStorage.token !== undefined){
             return true
           } else {
@@ -84,11 +91,11 @@ export default{
         })
 
         onUpdated(()=>{
-          console.log('onUpdated')
-          console.log(localStorage.token)
+          // console.log('onUpdated')
+          // console.log(localStorage.token)
           if (localStorage.token !== undefined){
             userLoginState.value = true
-            console.log(userLoginState.value)
+            // console.log(userLoginState.value)
           } else {
             userLoginState.value = false
           }

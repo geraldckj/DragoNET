@@ -30,4 +30,16 @@ export default{
         state.userId = payload.userId;
         state.didAutoLogout = false;
       },
+    loginUser(rootState, payload){
+        rootState.loggedIn = true,
+        rootState.currUserEmail = payload
+        // console.log(rootState.loggedIn)
+        // console.log(rootState.currUserEmail)
+        console.log('SET NEW USER STATE')
+    },
+    logoutUser(rootState){
+        rootState.loggedIn = false;
+        rootState.currUserEmail= null;
+    }
+
 };
