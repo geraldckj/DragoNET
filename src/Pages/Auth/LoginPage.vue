@@ -44,29 +44,14 @@ export default{
       password: null,
     })
 
-    // const allUsers = computed(() => store.getters['auth/getAllUsers']);
-
-    // function loginUser(){ //login functions should use firebase's built in auth module, instead of processing information locally      
-    //   //do up getters in auth store to authtenticate user, and change the value of user state to isAuthenticated
-    //   const findUser = allUsers.value.rows.filter(user => user.username == formData.username ) //&& user.password == formData.password
-    //   console.log(findUser)
-    // }
-    //require email from user
-
     async function loginUser2(){
-      // run action to authtnticat user and get login token from firebase console
+      // run action to authtenticate user and get login token from firebase console
       await store.dispatch('auth/loginUser', formData) //token stored inside localstorage
      //store user email into localStorage
       localStorage.setItem('userEmail', formData.email)
-      // console.log(localStorage)
       router.push('/userEvents')
     }
-    
-
-    //send action to firebase to log user in, and receive login token in return
-
-    // give local user a login token, to grant access to certain webpages (Can use localstorage to store UID gotten from firebase login authentication)
-
+  
   return {
     formData,
     loginUser2,

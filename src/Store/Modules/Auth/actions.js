@@ -1,7 +1,7 @@
 export default{
     async loginUser(context, payload){
-        console.log(payload.email)
-        console.log(payload.password)
+        // console.log(payload.email)
+        // console.log(payload.password)
         const url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBFKkTdWqcznM6mthra4DUahWw29HiJPCA`
         const response = await fetch(
             url, 
@@ -23,10 +23,8 @@ export default{
             throw error;
         }
         const expiresIn = responseData.expiresIn * 1000;
-        // const expiresIn = 5000;
         const expirationDate = new Date().getTime() + expiresIn;
 
-        // console.log(responseData)
 
         localStorage.setItem('token', responseData.idToken);
         localStorage.setItem('userId', responseData.localId);
@@ -81,5 +79,7 @@ export default{
         console.log(localStorage.getItem('token'))
         console.log('logout')
         context.commit('logoutUser')
-    }
+    },
+
+
 };

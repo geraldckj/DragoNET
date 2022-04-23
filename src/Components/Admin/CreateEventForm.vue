@@ -2,16 +2,54 @@
 <div>
     <base-card>
         <div class="vue-template">
-            <form >
-                <h3>Add New Event</h3>
-                <div class="form-group">
-                    <label for="eventName">Event Name</label>
-                    <input type="text" class="form-control form-control-lg" v-model.trim="formData.eventName"/>
+            <form @submit.prevent="createNewEvent">
+              <h3>Create New Event</h3>              
+                <div class="form-group" style="float:right">
+                    <label for="eventName">Event Title</label>
+                    <input type="text" class="form-control form-control-lg" v-model.trim="formData.eventTitle"/>
                 </div>
-                <div class="form-group">
+                
+                <div style="float:left" class="form-group">
                     <label>Event Description</label>
-                    <input type="text" class="form-control form-control-lg" v-model.trim="formData.eventDescription" />
+                    <input type="text" class="form-control form-control-lg" v-model.trim="formData.eventDesc" />
                 </div>
+                <div style="clear:both;">&nbsp;</div>
+
+                <div style="float:left" class="form-group">
+                    <label>Event Date</label>
+                    <input type="text" class="form-control form-control-lg" v-model.trim="formData.eventDate" />
+                </div>
+
+                <div style="float:right" class="form-group">
+                    <label>Event Time</label>
+                    <input type="text" class="form-control form-control-lg" v-model.trim="formData.eventTime" />
+                </div>
+                <div style="clear:both;">&nbsp;</div>
+
+
+                <div style="float:left" class="form-group">
+                    <label>Event Location</label>
+                    <input type="text" class="form-control form-control-lg" v-model.trim="formData.eventLocation" />
+                </div>
+
+                <div style="float:right" class="form-group">
+                    <label>Event Category</label>
+                    <input type="text" class="form-control form-control-lg" v-model.trim="formData.eventCategory" />
+                </div>
+                <div style="clear:both;">&nbsp;</div>
+
+                <div style="float:left" class="form-group">
+                    <label>Event Status</label>
+                    <input type="text" class="form-control form-control-lg" v-model.trim="formData.eventStatus" />
+                </div>
+
+                <div style="float:right" class="form-group">
+                    <label>Event Created By</label>
+                    <input type="text" class="form-control form-control-lg" v-model.trim="formData.createdBy" />
+                </div>
+                <div style="clear:both;">&nbsp;</div>
+
+
                 <button type="submit" class="btn btn-dark btn-lg btn-block">Create Event</button>
             </form>
         </div>
@@ -22,18 +60,35 @@
 <script>
 
 import {reactive} from 'vue';
+import {useStore} from 'vuex';
 
 export default{
   setup(){
+    const store = useStore();
+
     const formData = reactive({
-        eventName: null,
-        eventDescription: null,
+        eventTitle: '',
+        eventDesc: '',
+        eventDate:'',
+        eventTime:'',
+        eventLocation: '',
+        eventCategory: '',
+        eventStatus: '',
+        createdBy: '',
     })
+
+    async function createNewEvent(){
+      console.log(formData)
+      //send action that gives form info to db 
+      await store.dispatch('admin/createNewEvent', formData)
+      //redirect user to mainpage 
+    }
  
       
       
     return {
         formData,
+        createNewEvent
     }
   }
 }

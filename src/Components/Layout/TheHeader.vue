@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import { ref, onMounted, computed, onBeforeMount, onActivated, onUpdated } from 'vue'
+import { ref, computed, onUpdated } from 'vue'
 import {useStore} from 'vuex'
 import { useRouter } from 'vue-router'
 
@@ -61,7 +61,6 @@ export default{
         }
 
         const compUserStatus = computed(()=>{
-          console.log(store.getters['userLoginStatus'])
             return store.getters['auth/userLoginStatus']
         })
 
@@ -70,8 +69,6 @@ export default{
         }
 
         const switchButton = computed(()=> {
-          // console.log(componentKey)
-          // console.log('computed runs')
           if (localStorage.token !== undefined){
             return true
           } else {
@@ -79,16 +76,16 @@ export default{
           }
         })
 
-        onMounted(()=>{
-            console.log('onMounted')
-        })
-        onBeforeMount(()=>{
-          console.log('onbeforeMount')
-        })
+        // onMounted(()=>{
+        //     console.log('onMounted')
+        // })
+        // onBeforeMount(()=>{
+        //   console.log('onbeforeMount')
+        // })
 
-        onActivated(()=>{
-          console.log('onActivated')
-        })
+        // onActivated(()=>{
+        //   console.log('onActivated')
+        // })
 
         onUpdated(()=>{
           // console.log('onUpdated')
