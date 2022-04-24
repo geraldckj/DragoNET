@@ -5,13 +5,12 @@
         <p>You are logged in. Congrats!</p>
     </base-card>
     <base-container>
-        <user-event-table></user-event-table>    
+        <event-table></event-table>    
     </base-container>
     </div>
     
     <base-card v-else>
-        <p>You are not Logged in. Login <router-link to="/login">here</router-link>
-        </p>
+        <p>You are not Logged in. Login <router-link to="/login">here</router-link></p>
     </base-card>
     
 </div>
@@ -21,10 +20,13 @@
 import { onMounted, ref, computed} from 'vue'
 import {useStore} from 'vuex'
 // import { useRouter } from 'vue-router'
-import UserEventTable from '../User/UserEventsTable.vue'
+import EventTable from '../../Components/UI/EventTable.vue'
+
+// src\Components\UI\EventTable.vue
+// src\Pages\User\UserEvents.vue
 
 export default{
-    components: { UserEventTable },
+    components: { EventTable },
 
     setup(){
         const userLoginStatus = ref()

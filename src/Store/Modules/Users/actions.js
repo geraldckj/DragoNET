@@ -42,7 +42,8 @@ export default {
                 phoneNum: payload.phoneNum,
                 enlistDate: payload.enlistDate,
                 entity: payload.entity,
-                ordDate: payload.ordDate,})
+                ordDate: payload.ordDate,
+              })
           }
       )
   
@@ -50,46 +51,6 @@ export default {
       if (!response.ok) {
         // error ...
       }
-  
-      // context.commit('auth/addNewUser', 
-      //   ...userData,
-      //   {root: true}
-      // );
     },
-
-    async getCurrUserEmail(){
-      await fetch()
-    },
-
-    async getUserEventfromFirebase(){
-      // const response = await fetch(
-      //   `https://dragonet-8888-default-rtdb.asia-southeast1.firebasedatabase.app/allUsers.json`
-      // );
-
-      // const responseData = await response.json();
-
-      // if (!response.ok) {
-      //   const error = new Error(responseData.message || 'Failed to fetch!');
-      //   throw error;
-      // }
-
-      // const allUsers = {
-      //   rows: []
-      // };
-      // for (const key in responseData){
-      //   const user = {
-      //     id: key,
-      //     name: responseData[key].name,
-      //     username: responseData[key].username,
-      //     NRIC: responseData[key].NRIC,
-      //     phoneNum: responseData[key].phoneNum,
-      //     enlistDate: responseData[key].enlistDate,
-      //     entity: responseData[key].entity,
-      //     ordDate: responseData[key].ordDate
-      //   }
-      //   allUsers.rows.push(user)
-      // }
-      // context.commit('addUsersToStore', allUsers)
-    }
   };
   

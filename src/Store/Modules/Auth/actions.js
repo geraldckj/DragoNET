@@ -1,7 +1,5 @@
 export default{
     async loginUser(context, payload){
-        // console.log(payload.email)
-        // console.log(payload.password)
         const url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBFKkTdWqcznM6mthra4DUahWw29HiJPCA`
         const response = await fetch(
             url, 
@@ -18,14 +16,12 @@ export default{
 
         if (!response.ok) {
             const error = new Error(
-              responseData.message || 'error logging in, try again later'
+              responseData.message || 'Error logging in, try again later'
             );
             throw error;
         }
         const expiresIn = responseData.expiresIn * 1000;
         const expirationDate = new Date().getTime() + expiresIn;
-
-
         localStorage.setItem('token', responseData.idToken);
         localStorage.setItem('userId', responseData.localId);
         localStorage.setItem('tokenExpiration', expirationDate);
@@ -64,7 +60,6 @@ export default{
         localStorage.setItem('token', responseData.idToken);
         localStorage.setItem('userId', responseData.localId);
         // localStorage.setItem('tokenExpiration', expirationDate); //used for auto login/logout 
-        
         
         context.commit('setUser', {
             token: responseData.idToken,
